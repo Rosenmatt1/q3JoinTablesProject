@@ -3,7 +3,7 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTable('chores', table => {
     table.increments()
     table.string('chore').notNullable().defaultsTo('')
-    table.integer('roommate_id').notNullable().references('id').inTable('households')
+    table.integer('roommate_id').notNullable().references('id').inTable('roommates').onDelete('CASCADE').index()
     table.timestamps(true, true)
   })
 };

@@ -5,10 +5,10 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('roommates').insert([
-        {name: 'mateo', age: 34,},
-        {name: 'Anthony', age: 23},
-        {name: 'Trevor', age: 24},
-        {name: 'Chris', age: 24 }
+        {id: 1, name: 'Mateo', age: 34, household_id: 1},
+        {id: 2, name: 'Anthony', age: 23, household_id: 1},
+        {id: 3, name: 'Trevor', age: 24, household_id: 2},
+        {id: 4, name: 'Chris', age: 38, household_id: 2 }
       ])
     }).then(() => {
       return knex.raw(
