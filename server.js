@@ -12,3 +12,7 @@ const dotenv = require("dotenv")
 
 app.use(parser.json())
 app.use(cors())
+
+
+
+app.listen(port, () => console.log(`Cleaning up the house on port ${port}!`))
