@@ -1,13 +1,18 @@
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('table_name').del()
+  return knex('roommates').del()
     .then(function () {
       // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
-      ]);
-    });
-};
+      return knex('roommates').insert([
+        {name: 'mateo', age: 34,},
+        {name: 'Anthony', age: 23},
+        {name: 'Trevor', age: 24},
+        {name: 'Chris', age: 24 }
+      ])
+    }).then(() => {
+      return knex.raw(
+        "SELECT setval('roommates_id_seq', (SELECT MAX(id) FROM roommates));"
+      )
+    })
+}

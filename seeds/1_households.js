@@ -1,13 +1,17 @@
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('table_name').del()
+  return knex('households').del()
     .then(function () {
       // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
-      ]);
-    });
-};
+      return knex('households').insert([
+        {address: '6517 Galvanize Ave'},
+        {address: '1111 Sync Lane', name: 'The Love House'},
+        {address: '3547 Main St'}
+      ])
+    }).then(() => {
+      return knex.raw(
+        "SELECT setval('households_id_seq', (SELECT MAX(id) FROM households));"
+      )
+    })
+}
