@@ -4,8 +4,8 @@ exports.up = function(knex, Promise) {
     table.increments()
     table.string('name').notNullable().defaultsTo('Person')
     table.integer('age').notNullable().defaultsTo(18)
-    table.integer('household_id')
-    table.foreign('household_id').references('id').inTable('households')
+    // table.integer('household_id')
+    table.integer('household_id').notNullable().references('id').inTable('households')
   })
 };
 
