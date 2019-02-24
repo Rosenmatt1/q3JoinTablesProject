@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 app.get('/:id', (req, res) => {
   return knex('roommates')
     .where('household_id', req.params.id)
-    
+    .select('name', 'id')
       .then(roommates => {
           const roommateChores = roommates.map(roommate => {
             return knex('chores')
