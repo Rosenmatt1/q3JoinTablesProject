@@ -28,11 +28,12 @@ app.get('/', (req, res) => {
 
 app.get('/:id', (req, res) => {
   return knex('roommates')
-    .where('roommates.household_id', req.params.id)
+    .where('household_id', req.params.id)
+    
       .then(roommates => {
           const roommateChores = roommates.map(roommate => {
             return knex('chores')
-              .where('chores.roommate_id', roommate.id)
+              .where('roommate_id', roommate.id)
               .select('chore')
               .then(roommateChore => {
                 roommate.chores = roommateChore 
